@@ -96,9 +96,17 @@ class SettingsScreen extends ConsumerWidget {
     );
 
     if (result != null && result.trim().isNotEmpty) {
-      ref
-          .read(currentProjectProvider.notifier)
-          .createProject(result.trim());
+      try {
+        await ref
+            .read(currentProjectProvider.notifier)
+            .createProject(result.trim());
+      } catch (e) {
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('プロジェクト作成に失敗しました: $e')),
+          );
+        }
+      }
     }
     controller.dispose();
   }
