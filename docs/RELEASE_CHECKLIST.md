@@ -4,9 +4,9 @@
 
 - [x] flutter analyze: 0 issues
 - [x] flutter test: 全テスト合格
-- [ ] バージョン番号更新 (`pubspec.yaml` の version)
-- [ ] アプリアイコン設定 (flutter_launcher_icons)
-- [ ] スプラッシュ画面設定 (flutter_native_splash)
+- [x] バージョン番号更新 (`pubspec.yaml` の version) → 1.1.0+2
+- [x] アプリアイコン設定 (flutter_launcher_icons)
+- [x] スプラッシュ画面設定 (flutter_native_splash)
 
 ## Android
 
