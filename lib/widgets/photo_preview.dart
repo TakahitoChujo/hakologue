@@ -21,46 +21,48 @@ class PhotoPreview extends StatelessWidget {
       child: ListView(
         scrollDirection: Axis.horizontal,
         children: [
-          ...photoPaths.asMap().entries.map((entry) => Padding(
-                padding: const EdgeInsets.only(right: 8),
-                child: Stack(
-                  children: [
-                    ClipRRect(
-                      borderRadius:
-                          BorderRadius.circular(Dimensions.borderRadius),
-                      child: Image.file(
-                        File(entry.value),
-                        width: 120,
-                        height: 120,
-                        fit: BoxFit.cover,
-                        errorBuilder: (_, __, ___) => Container(
-                          width: 120,
-                          height: 120,
-                          color: Colors.grey.shade200,
-                          child: const Icon(Icons.broken_image),
+          ...photoPaths.asMap().entries.map((entry) {
+            final file = File(entry.value);
+            final exists = file.existsSync();
+            return Padding(
+              padding: const EdgeInsets.only(right: 8),
+              child: Stack(
+                children: [
+                  ClipRRect(
+                    borderRadius:
+                        BorderRadius.circular(Dimensions.borderRadius),
+                    child: exists
+                        ? Image.file(
+                            file,
+                            width: 120,
+                            height: 120,
+                            fit: BoxFit.cover,
+                            errorBuilder: (_, __, ___) =>
+                                _brokenImagePlaceholder(),
+                          )
+                        : _brokenImagePlaceholder(),
+                  ),
+                  if (onDeletePhoto != null)
+                    Positioned(
+                      top: 4,
+                      right: 4,
+                      child: GestureDetector(
+                        onTap: () => onDeletePhoto!(entry.key),
+                        child: Container(
+                          padding: const EdgeInsets.all(2),
+                          decoration: const BoxDecoration(
+                            color: Colors.black54,
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Icon(Icons.close,
+                              color: Colors.white, size: 16),
                         ),
                       ),
                     ),
-                    if (onDeletePhoto != null)
-                      Positioned(
-                        top: 4,
-                        right: 4,
-                        child: GestureDetector(
-                          onTap: () => onDeletePhoto!(entry.key),
-                          child: Container(
-                            padding: const EdgeInsets.all(2),
-                            decoration: const BoxDecoration(
-                              color: Colors.black54,
-                              shape: BoxShape.circle,
-                            ),
-                            child: const Icon(Icons.close,
-                                color: Colors.white, size: 16),
-                          ),
-                        ),
-                      ),
-                  ],
-                ),
-              )),
+                ],
+              ),
+            );
+          }),
           if (onAddPhoto != null)
             GestureDetector(
               onTap: onAddPhoto,
@@ -86,6 +88,15 @@ class PhotoPreview extends StatelessWidget {
             ),
         ],
       ),
+    );
+  }
+
+  Widget _brokenImagePlaceholder() {
+    return Container(
+      width: 120,
+      height: 120,
+      color: Colors.grey.shade200,
+      child: const Icon(Icons.broken_image),
     );
   }
 }

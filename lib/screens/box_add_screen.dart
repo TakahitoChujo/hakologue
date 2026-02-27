@@ -27,8 +27,17 @@ class _BoxAddScreenState extends ConsumerState<BoxAddScreen> {
 
   @override
   void dispose() {
+    _cleanupTempPhotos();
     _nameController.dispose();
     super.dispose();
+  }
+
+  void _cleanupTempPhotos() {
+    if (_createdBoxId != null) return;
+    final photoService = ref.read(photoServiceProvider);
+    for (final path in _photoPaths) {
+      photoService.deletePhoto(path);
+    }
   }
 
   Future<void> _saveBox() async {

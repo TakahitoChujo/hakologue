@@ -47,6 +47,8 @@ class BoxDetailScreen extends ConsumerWidget {
               photoPaths: box.photoIds,
               onAddPhoto: () =>
                   _addPhoto(context, ref, box.projectId),
+              onDeletePhoto: (index) =>
+                  _deletePhoto(context, ref, box, index),
             ),
             const SizedBox(height: 16),
             Card(
@@ -179,7 +181,32 @@ class BoxDetailScreen extends ConsumerWidget {
     }
 
     if (path != null) {
-      ref.read(boxListProvider.notifier).addPhotoToBox(boxId, path);
+      try {
+        await ref.read(boxListProvider.notifier).addPhotoToBox(boxId, path);
+      } catch (e) {
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('写真の追加に失敗しました: $e')),
+          );
+        }
+      }
+    }
+  }
+
+  Future<void> _deletePhoto(BuildContext context, WidgetRef ref,
+      dynamic box, int index) async {
+    final photoService = ref.read(photoServiceProvider);
+    final path = box.photoIds[index];
+    await photoService.deletePhoto(path);
+    box.photoIds.removeAt(index);
+    try {
+      await ref.read(boxListProvider.notifier).updateBox(box);
+    } catch (e) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('写真の削除に失敗しました: $e')),
+        );
+      }
     }
   }
 
@@ -207,8 +234,16 @@ class BoxDetailScreen extends ConsumerWidget {
     );
 
     if (confirmed == true && context.mounted) {
-      ref.read(boxListProvider.notifier).deleteBox(boxId);
-      Navigator.pop(context);
+      try {
+        await ref.read(boxListProvider.notifier).deleteBox(boxId);
+        if (context.mounted) Navigator.pop(context);
+      } catch (e) {
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('削除に失敗しました: $e')),
+          );
+        }
+      }
     }
   }
 }
