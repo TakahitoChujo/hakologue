@@ -6,35 +6,33 @@
 
 ---
 
-## v1.1 - セキュリティ強化 & 安定化
+## v1.1 - セキュリティ強化 & 安定化 - 完了
 
-優先度順に実施。
+### 必須 (Must) - 全完了
 
-### 必須 (Must)
+| タスク | 概要 | 対象ファイル | 状態 |
+|--------|------|-------------|------|
+| Hive 暗号化 | DB をアプリ固有キーで暗号化 + 自動マイグレーション | `database_service.dart`, `main.dart` | 完了 |
+| EXIF メタデータ除去 | 写真保存時に位置情報等を削除 | `photo_service.dart` | 完了 |
+| パストラバーサル防止 | 写真パスの正規化・検証 | `photo_service.dart` | 完了 |
+| DB エラーハンドリング | 全 CRUD 操作に try-catch + DatabaseException | `database_service.dart` | 完了 |
 
-| タスク | 概要 | 対象ファイル |
-|--------|------|-------------|
-| Hive 暗号化 | DB をアプリ固有キーで暗号化 | `database_service.dart`, `main.dart` |
-| EXIF メタデータ除去 | 写真保存時に位置情報等を削除 | `photo_service.dart` |
-| パストラバーサル防止 | 写真パスの正規化・検証 | `photo_service.dart` |
-| DB エラーハンドリング | 全 CRUD 操作に try-catch 追加 | `database_service.dart` |
+### 推奨 (Should) - 全完了
 
-### 推奨 (Should)
+| タスク | 概要 | 対象ファイル | 状態 |
+|--------|------|-------------|------|
+| 一時ファイルクリーンアップ | 箱作成キャンセル時の写真削除 | `box_add_screen.dart` | 完了 |
+| 写真パス検証 | 表示前にファイル存在確認 | `photo_preview.dart` | 完了 |
+| エラー表示の統一 | SnackBar によるエラーメッセージ統一 | `box_detail_screen.dart`, `settings_screen.dart` | 完了 |
+| 起動エラー画面 | DB初期化/アプリ初期化失敗時の画面 | `main.dart` | 完了 |
 
-| タスク | 概要 | 対象ファイル |
-|--------|------|-------------|
-| 一時ファイルクリーンアップ | 箱作成キャンセル時の写真削除 | `box_add_screen.dart` |
-| 写真パス検証 | 表示前にファイル存在確認 | `photo_preview.dart`, `box_detail_screen.dart` |
-| エラー表示の統一 | SnackBar によるエラーメッセージ統一 | 各 screen |
-| ローディング状態の統一 | 非同期処理中の UI フィードバック | 各 screen |
+### 任意 (Nice to have) - 一部完了
 
-### 任意 (Nice to have)
-
-| タスク | 概要 |
-|--------|------|
-| ProGuard / R8 難読化設定 | Android リリースビルド用 |
-| アプリアイコン設定 | flutter_launcher_icons で生成 |
-| スプラッシュ画面 | flutter_native_splash で設定 |
+| タスク | 概要 | 状態 |
+|--------|------|------|
+| ProGuard / R8 難読化設定 | Android リリースビルド用 | 完了 |
+| アプリアイコン設定 | flutter_launcher_icons で生成 | 未着手 |
+| スプラッシュ画面 | flutter_native_splash で設定 | 未着手 |
 
 ---
 
