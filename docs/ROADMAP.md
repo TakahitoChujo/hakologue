@@ -31,8 +31,8 @@
 | タスク | 概要 | 状態 |
 |--------|------|------|
 | ProGuard / R8 難読化設定 | Android リリースビルド用 | 完了 |
-| アプリアイコン設定 | flutter_launcher_icons で生成 | 未着手 |
-| スプラッシュ画面 | flutter_native_splash で設定 | 未着手 |
+| アプリアイコン設定 | flutter_launcher_icons で生成 | 完了 |
+| スプラッシュ画面 | flutter_native_splash で設定 | 完了 |
 
 ---
 
