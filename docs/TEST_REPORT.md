@@ -1,6 +1,6 @@
 # テストレポート
 
-実行日: 2026-02-27
+最終実行日: 2026-02-27 (v1.1)
 結果: **52/52 PASSED**
 
 ## テスト一覧
@@ -51,9 +51,19 @@
 | 画面 | - | 全画面 (Hive/Navigator依存) |
 | プロバイダー | - | 全プロバイダー (Hive依存) |
 
+## v1.1 品質確認
+
+| チェック | 結果 |
+|----------|------|
+| `flutter analyze` | 0 issues |
+| `flutter test` | 52/52 passed |
+| 既存テスト回帰 | なし |
+| v1.0 → v1.1 マイグレーション | コード上対応済み (暗号化マイグレーション) |
+
 ## 今後の改善
 
 - [ ] DatabaseService のモックテスト追加
+- [ ] PhotoService のモックテスト追加 (EXIF除去・パス検証)
 - [ ] Provider テスト追加 (ProviderContainer 利用)
 - [ ] Screen テスト追加 (mocktail でサービスモック)
 - [ ] Integration テスト作成 (実機 E2E)

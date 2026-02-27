@@ -2,19 +2,19 @@
 
 ## ビルド準備
 
-- [ ] flutter analyze: 0 issues
-- [ ] flutter test: 全テスト合格
+- [x] flutter analyze: 0 issues
+- [x] flutter test: 全テスト合格
 - [ ] バージョン番号更新 (`pubspec.yaml` の version)
 - [ ] アプリアイコン設定 (flutter_launcher_icons)
 - [ ] スプラッシュ画面設定 (flutter_native_splash)
 
 ## Android
 
-- [ ] `android/app/build.gradle` の applicationId 確認 (`com.hakologue.hakologue`)
+- [x] `android/app/build.gradle` の applicationId 確認 (`com.hakologue.hakologue`)
 - [ ] minSdkVersion / targetSdkVersion 確認
 - [ ] リリース署名キー作成 (keystore)
 - [ ] `android/app/build.gradle` に signingConfigs 設定
-- [ ] ProGuard / R8 難読化設定
+- [x] ProGuard / R8 難読化設定
 - [ ] `flutter build appbundle --release`
 - [ ] 実機で動作確認 (カメラ・QR・写真)
 
@@ -23,7 +23,7 @@
 - [ ] Xcode で Bundle Identifier 確認
 - [ ] Apple Developer アカウント設定
 - [ ] Provisioning Profile 作成
-- [ ] Info.plist の権限記述確認 (カメラ・写真)
+- [x] Info.plist の権限記述確認 (カメラ・写真)
 - [ ] `flutter build ipa --release`
 - [ ] 実機で動作確認 (カメラ・QR・写真)
 
@@ -48,4 +48,4 @@
 
 - [ ] クラッシュ監視設定 (Firebase Crashlytics 推奨)
 - [ ] ユーザーフィードバック収集体制
-- [ ] v1.1 セキュリティ強化の着手
+- [x] ~~v1.1 セキュリティ強化の着手~~ → 完了
