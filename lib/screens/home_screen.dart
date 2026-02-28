@@ -29,7 +29,7 @@ class HomeScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(project?.name ?? 'ハコログ'),
+        title: Text(project?.name ?? 'ハコピー'),
         backgroundColor: AppColors.primary,
         foregroundColor: Colors.white,
         actions: [

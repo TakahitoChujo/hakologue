@@ -54,7 +54,7 @@ class SettingsScreen extends ConsumerWidget {
             trailing: Text('1.0.0'),
           ),
           const ListTile(
-            title: Text('ハコログ'),
+            title: Text('ハコピー'),
             subtitle: Text(
                 '段ボールにQRコードを貼って中身を管理。\n「あれどこ？」をゼロにする引っ越しアプリ'),
           ),
