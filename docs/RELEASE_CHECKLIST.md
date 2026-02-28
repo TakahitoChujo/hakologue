@@ -44,8 +44,19 @@
 - [ ] TestFlight で内部テスト
 - [ ] 審査提出
 
+## 広告 (AdMob)
+
+- [x] google_mobile_ads パッケージ追加
+- [x] AndroidManifest.xml に AdMob App ID 設定
+- [x] Info.plist に GADApplicationIdentifier + ATT + SKAdNetwork 設定
+- [x] ProGuard に AdMob 難読化除外ルール追加
+- [ ] AdMob アカウント作成 & アプリ登録
+- [ ] テスト用IDを本番IDに差替え (`ad_constants.dart`, `AndroidManifest.xml`, `Info.plist`)
+- [ ] 実機でテストバナー表示確認
+
 ## リリース後
 
 - [ ] クラッシュ監視設定 (Firebase Crashlytics 推奨)
 - [ ] ユーザーフィードバック収集体制
 - [x] ~~v1.1 セキュリティ強化の着手~~ → 完了
+- [x] ~~v1.2 広告導入~~ → 完了（テストID）

@@ -4,6 +4,8 @@ import 'app.dart';
 import 'services/database_service.dart';
 import 'providers/database_provider.dart';
 import 'providers/project_provider.dart';
+import 'services/ad_service.dart';
+import 'providers/ad_provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,10 +18,18 @@ Future<void> main() async {
     return;
   }
 
+  final adService = AdService();
+  try {
+    await adService.initialize();
+  } catch (_) {
+    // 広告初期化失敗はアプリ起動を妨げない
+  }
+
   runApp(
     ProviderScope(
       overrides: [
         databaseServiceProvider.overrideWithValue(dbService),
+        adServiceProvider.overrideWithValue(adService),
       ],
       child: const _AppInitializer(),
     ),

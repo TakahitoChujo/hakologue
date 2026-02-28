@@ -49,6 +49,8 @@ class BoxCard extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         color: AppColors.textPrimary,
                       ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
                     const SizedBox(height: 4),
                     if (items.isNotEmpty)
@@ -74,14 +76,17 @@ class BoxCard extends StatelessWidget {
                               : AppColors.unopened,
                         ),
                         const SizedBox(width: 4),
-                        Text(
-                          box.isOpened ? '開封済み' : '未開封',
-                          style: TextStyle(
-                            fontSize: 13,
-                            color: box.isOpened
-                                ? AppColors.opened
-                                : AppColors.unopened,
-                            fontWeight: FontWeight.w500,
+                        Flexible(
+                          child: Text(
+                            box.isOpened ? '開封済み' : '未開封',
+                            style: TextStyle(
+                              fontSize: 13,
+                              color: box.isOpened
+                                  ? AppColors.opened
+                                  : AppColors.unopened,
+                              fontWeight: FontWeight.w500,
+                            ),
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
                       ],

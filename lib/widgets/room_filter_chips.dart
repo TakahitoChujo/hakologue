@@ -14,34 +14,26 @@ class RoomFilterChips extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 40,
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(right: 8),
-            child: FilterChip(
-              label: const Text('全て'),
-              selected: selectedRoom == null,
-              onSelected: (_) => onSelected(null),
+    return Wrap(
+      spacing: 8,
+      runSpacing: 4,
+      children: [
+        FilterChip(
+          label: const Text('全て'),
+          selected: selectedRoom == null,
+          onSelected: (_) => onSelected(null),
+          selectedColor: AppColors.primary.withValues(alpha: 0.2),
+          checkmarkColor: AppColors.primary,
+        ),
+        ...RoomPresets.rooms.map((room) => FilterChip(
+              label: Text(room),
+              selected: selectedRoom == room,
+              onSelected: (_) =>
+                  onSelected(selectedRoom == room ? null : room),
               selectedColor: AppColors.primary.withValues(alpha: 0.2),
               checkmarkColor: AppColors.primary,
-            ),
-          ),
-          ...RoomPresets.rooms.map((room) => Padding(
-                padding: const EdgeInsets.only(right: 8),
-                child: FilterChip(
-                  label: Text(room),
-                  selected: selectedRoom == room,
-                  onSelected: (_) =>
-                      onSelected(selectedRoom == room ? null : room),
-                  selectedColor: AppColors.primary.withValues(alpha: 0.2),
-                  checkmarkColor: AppColors.primary,
-                ),
-              )),
-        ],
-      ),
+            )),
+      ],
     );
   }
 }
