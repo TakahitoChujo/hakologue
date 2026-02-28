@@ -3,12 +3,13 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32"/>
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
     <application
-        android:label="hakologue"
+        android:label="ハコピー"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
-        <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544~3347511713"/>
+        android:icon="@mipmap/ic_launcher"
+        android:allowBackup="false"
+        android:fullBackupContent="false">
+        <!-- TODO: 本番AdMob App IDを設定してから追加すること -->
+        <!-- <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="YOUR_ADMOB_APP_ID"/> -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
