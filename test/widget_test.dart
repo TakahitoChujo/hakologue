@@ -11,6 +11,6 @@ void main() {
     );
     await tester.pumpAndSettle();
 
-    expect(find.text('ハコログ'), findsWidgets);
+    expect(find.text('ハコピー'), findsWidgets);
   });
 }
