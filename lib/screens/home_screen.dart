@@ -102,14 +102,54 @@ class HomeScreen extends ConsumerWidget {
                           ref.watch(boxItemsProvider(box.id));
                       return Padding(
                         padding: const EdgeInsets.only(bottom: 8),
-                        child: BoxCard(
-                          box: box,
-                          items: items,
-                          onTap: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) =>
-                                  BoxDetailScreen(boxId: box.id),
+                        child: Dismissible(
+                          key: ValueKey(box.id),
+                          direction: DismissDirection.endToStart,
+                          background: Container(
+                            alignment: Alignment.centerRight,
+                            padding: const EdgeInsets.only(right: 20),
+                            decoration: BoxDecoration(
+                              color: Colors.red,
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: const Icon(Icons.delete, color: Colors.white),
+                          ),
+                          confirmDismiss: (_) async {
+                            return await showDialog<bool>(
+                              context: context,
+                              builder: (ctx) => AlertDialog(
+                                title: const Text('箱を削除'),
+                                content: Text('「${box.name}」と中身をすべて削除しますか？'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () => Navigator.pop(ctx, false),
+                                    child: const Text('キャンセル'),
+                                  ),
+                                  TextButton(
+                                    onPressed: () => Navigator.pop(ctx, true),
+                                    style: TextButton.styleFrom(
+                                        foregroundColor: Colors.red),
+                                    child: const Text('削除'),
+                                  ),
+                                ],
+                              ),
+                            ) ?? false;
+                          },
+                          onDismissed: (_) {
+                            ref.read(boxListProvider.notifier).deleteBox(box.id);
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(content: Text('「${box.name}」を削除しました')),
+                            );
+                          },
+                          child: BoxCard(
+                            box: box,
+                            items: items,
+                            onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) =>
+                                    BoxDetailScreen(boxId: box.id),
+                              ),
                             ),
                           ),
                         ),
