@@ -14,6 +14,7 @@
 | ファイルパス | path_provider | 2.1.5 |
 | UUID | uuid | 4.5.1 |
 | 共有 | share_plus | 10.1.0 |
+| 広告 | google_mobile_ads | 5.3.0 |
 
 ## ディレクトリ構成
 
@@ -29,7 +30,8 @@ lib/
 │
 ├── constants/                 # 定数
 │   ├── app_colors.dart        #   カラー (#4A90D9 primary)
-│   └── dimensions.dart        #   スペーシング
+│   ├── dimensions.dart        #   スペーシング
+│   └── ad_constants.dart      #   広告ID・プラットフォーム分岐
 │
 ├── data/                      # 静的データ
 │   └── room_presets.dart      #   部屋カテゴリ 8種
@@ -37,13 +39,15 @@ lib/
 ├── services/                  # ビジネスロジック
 │   ├── database_service.dart  #   Hive CRUD (4 boxes)
 │   ├── photo_service.dart     #   写真撮影・保存
-│   └── search_service.dart    #   アイテム検索
+│   ├── search_service.dart    #   アイテム検索
+│   └── ad_service.dart        #   AdMob SDK初期化・バナー管理
 │
 ├── providers/                 # Riverpod プロバイダー
 │   ├── database_provider.dart #   サービスプロバイダー
 │   ├── project_provider.dart  #   CurrentProjectNotifier
 │   ├── box_provider.dart      #   BoxList/BoxItems/Filter
-│   └── search_provider.dart   #   検索クエリ・結果
+│   ├── search_provider.dart   #   検索クエリ・結果
+│   └── ad_provider.dart       #   広告サービス・表示フラグ
 │
 ├── widgets/                   # 再利用可能ウィジェット
 │   ├── box_card.dart
@@ -51,7 +55,8 @@ lib/
 │   ├── room_filter_chips.dart
 │   ├── qr_display.dart
 │   ├── item_input_row.dart
-│   └── photo_preview.dart
+│   ├── photo_preview.dart
+│   └── ad_banner_widget.dart  #   AdMob バナー広告
 │
 └── screens/                   # 画面
     ├── home_screen.dart       #   メイン (進捗 + 箱一覧)

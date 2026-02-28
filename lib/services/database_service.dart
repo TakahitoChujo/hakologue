@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import '../models/move_project.dart';
@@ -34,6 +35,14 @@ class DatabaseService {
 
   Future<void> init() async {
     await Hive.initFlutter();
+    if (kIsWeb) {
+      // Web版は暗号化非対応（UI確認用）
+      _projectsStore = await Hive.openBox(_projectsBox);
+      _boxesStore = await Hive.openBox(_boxesBox);
+      _itemsStore = await Hive.openBox(_itemsBox);
+      _settingsStore = await Hive.openBox(_settingsBox);
+      return;
+    }
     final cipher = HiveAesCipher(await _getOrCreateKey());
     await _migrateIfNeeded(cipher);
     _projectsStore =

@@ -5,6 +5,7 @@ import '../providers/project_provider.dart';
 import '../widgets/box_card.dart';
 import '../widgets/progress_bar.dart';
 import '../widgets/room_filter_chips.dart';
+import '../widgets/ad_banner_widget.dart';
 import '../constants/app_colors.dart';
 import '../constants/dimensions.dart';
 import 'box_add_screen.dart';
@@ -62,6 +63,7 @@ class HomeScreen extends ConsumerWidget {
             child: OpeningProgressBar(
                 opened: openedBoxes, total: totalBoxes),
           ),
+          const AdBannerWidget(),
           Padding(
             padding: const EdgeInsets.symmetric(
                 horizontal: Dimensions.paddingMedium),

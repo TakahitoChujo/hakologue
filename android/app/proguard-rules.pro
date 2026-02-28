@@ -11,3 +11,7 @@
 
 # Hive
 -keep class com.google.crypto.tink.** { *; }
+
+# Google AdMob
+-keep class com.google.android.gms.ads.** { *; }
+-keep class com.google.ads.** { *; }
